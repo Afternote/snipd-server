@@ -1,0 +1,31 @@
+name: Deploy Go Application
+
+on:
+  push:
+    branches:
+      - main 
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Source
+        uses: actions/checkout@v4
+      - name: Create .env file
+        run: echo "PORT=${{ secrets.PORT }}" >> .env
+      - name: Login to docker hub
+        run: docker login -u ${{ secrets.DOCKER_USERNAME }} -p ${{ secrets.DOCKER_PASSWORD }}
+      - name: Build docker image
+        run: docker build -t aadityaguptaa/snipd-docker .
+      - name: Push image to docker hub
+        run: docker push aadityaguptaa/snipd-docker:latest
+  deploy:
+    needs: build
+    runs-on: self-hosted
+    steps:
+      - name: Pull docker image
+        run: docker pull aadityaguptaa/snipd-docker:latest
+      - name: Delete old container
+        run: docker rm -f go-app-container  
+      - name: Run docker container          
+        run: docker run -d -p 4040:4040 --name go-app-container aadityaguptaa/snipd-docker
