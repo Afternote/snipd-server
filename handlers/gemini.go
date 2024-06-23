@@ -54,7 +54,7 @@ func GeminiHandler(w http.ResponseWriter, r *http.Request) {
 	}
 
     // Assuming getResponseFromGemini returns the generated text as a string
-    generatedText, err := getResponseFromGemini(w, mergedContent)
+     getResponseFromGemini(w, mergedContent)
 
     if err != nil {
         // Handle error appropriately (e.g., log the error and return a generic error message)
@@ -63,15 +63,15 @@ func GeminiHandler(w http.ResponseWriter, r *http.Request) {
         return
     }
 
-    response := struct {
-        Message string `json:"message"`
-        Content string `json:"content"`
-    }{
-        Message: "Response from Gemini",
-        Content: generatedText,
-    }
+    // response := struct {
+    //     Message string `json:"message"`
+    //     Content string `json:"content"`
+    // }{
+    //     Message: "Response from Gemini",
+    //     Content: generatedText,
+    // }
 
-    err = json.NewEncoder(w).Encode(response)
+    // err = json.NewEncoder(w).Encode(response)
     if err != nil {
         // Handle encoding error (e.g., log the error and return a bad request status)
         log.Println("Error encoding response:", err)
