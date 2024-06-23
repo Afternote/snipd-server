@@ -9,7 +9,6 @@ import (
 	"log"
 	"net/http"
 	"os"
-	"time"
 
 	"github.com/gofor-little/env"
 	"github.com/google/generative-ai-go/genai"
@@ -20,7 +19,6 @@ type Snippet struct {
     Title    string    `json:"title"`
     Category string    `json:"category"`
     Content  string    `json:"content"`
-    DateTime time.Time `json:"date"`
     Notes    string    `json:"customNotes"`
     Type     string    `json:"type"`
     Source   string    `json:"source"`
