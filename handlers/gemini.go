@@ -20,8 +20,11 @@ type Snippet struct {
     Title    string    `json:"title"`
     Category string    `json:"category"`
     Content  string    `json:"content"`
-    DateTime time.Time `json:"dateTime"`
-    Notes    string    `json:"notes"`
+    DateTime time.Time `json:"date"`
+    Notes    string    `json:"customNotes"`
+    Type     string    `json:"type"`
+    Source   string    `json:"source"`
+    ID       string    `json:"id"`
 }
 
 func GeminiHandler(w http.ResponseWriter, r *http.Request) {
