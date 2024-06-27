@@ -19,7 +19,7 @@ type Snippet struct {
     Title    string    `json:"title"`
     Category string    `json:"category"`
     Content  string    `json:"content"`
-    Notes    string    `json:"customNotes"`
+    Notes    any    `json:"customNotes"`
     Type     string    `json:"type"`
     Source   string    `json:"source"`
     ID       string    `json:"id"`
