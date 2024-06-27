@@ -30,4 +30,4 @@ jobs:
       - name: Delete old container
         run: docker rm -f go-app-container  
       - name: Run docker container          
-        run: docker run -d -p 4040:4040 --name go-app-container aadityaguptaa/snipd-docker
+        run: docker run --init -d -p 4040:4040 --name go-app-container aadityaguptaa/snipd-docker
